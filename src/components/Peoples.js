@@ -1,9 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { PeopleAction } from '../actions/PeopleAction';
-import {Table} from "antd";
+import {Table,Layout} from "antd";
+
 import "antd/dist/antd.css";
 const People = ()=>{
+  const { Header, Content, Footer , Sider} = Layout;
   const people = useSelector((state) => state.peoples);
   const { peoples, loading} = people;
   const dispatch = useDispatch();
@@ -63,11 +65,15 @@ const People = ()=>{
  ];
   return (
     <div>
-      <Table
-        columns={columns}
-        dataSource={dataSource}
-      ></Table>
-      
+      <Layout>
+        <Header>header</Header>
+        <Layout>
+          <Content>   
+            <Table columns={columns} dataSource={dataSource} pagination={false}></Table>
+          </Content>
+        </Layout>
+        <Footer>Copy right@2021</Footer>
+      </Layout>
     </div>
   );
 }
